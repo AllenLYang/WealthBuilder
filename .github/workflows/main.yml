@@ -15,7 +15,7 @@ jobs:
   
   steps:
     # Uses GitHub’s checkout action to check out code from the main branch
-    – uses: actions/checkout@v3
+    – uses: actions/checkout@v2
 
     # Sets up .NET Core SDK 6.x
     – name: Setup .NET Core SDK
