@@ -1,47 +1,36 @@
-name: Deploy to GitHub pages
+# This is a basic workflow to help you get started with Actions
+
+name: CI
 
 # Controls when the workflow will run
 on:
   # Triggers the workflow on push or pull request events but only for the "main" branch
   push:
-    branches: [ "main" ] 
+    branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
 
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  deploy-to-github-pages:
-    # Use Ubuntu-latest image to run steps on  
-  	runs-on: ubuntu-latest
-  
-  	steps:
-    # Uses GitHub’s checkout action to check out code from the main branch
-    - uses: actions/checkout@v3
-		
-    # Sets up .NET Core SDK 6.x
-    - name: Setup .NET Core SDK
-	    uses: actions/setup-dotnet@v2
-	    with:
-		    dotnet-version: 6.x
+  # This workflow contains a single job called "build"
+  build:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
 
-    # Publishes the Blazor project to the release folder
-    - name: Publish .NET Core Project
-      run: dotnet publish WealthBuilder.csproj -c Release -o release –nologo
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v3
 
-    # Changes the base tag in index.html from ‘/’ to ‘WealthBuilder’ to match the GitHub Pages repository subdirectory
-    - name: Change base-tag in index.html from / to WealthBuilder.csproj
-      run: sed -i ‘s/<base href=”\/” \/>/<base href=”\/WealthBuilder\/” \/>/g’ release/wwwroot/index.html
+      # Runs a single command using the runners shell
+      - name: Run a one-line script
+        run: echo Hello, world!
 
-    # Copy index.html to 404.html to serve the same file when a file is not found
-    - name: copy index.html to 404.html
-      run: cp release/wwwroot/index.html release/wwwroot/404.html
-
-    # Add the .nojekyll file to tell GitHub pages to not treat this as a Jekyll project. (Allow files and folders starting with an underscore)
-    - name: Add .nojekyll file
-      run: touch release/wwwroot/.nojekyll
-
-    - name: Commit wwwroot to GitHub pages
-      uses: JamesIves/github-pages-deploy-action@3.7.1
-      with:
-    	  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-    	  BRANCH: gh-pages
-    	  FOLDER: release/wwwroot
+      # Runs a set of commands using the runners shell
+      - name: Run a multi-line script
+        run: |
+          echo Add other actions to build,
+          echo test, and deploy your project.
