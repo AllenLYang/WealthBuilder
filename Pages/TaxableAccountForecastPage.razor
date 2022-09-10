@@ -1,0 +1,34 @@
+﻿@page "/taxable-account-forecast"
+
+<PageTitle>Your Taxable Account Forecast</PageTitle>
+
+<h3>Your Taxable Account Forecast</h3>
+
+<p>@LeadingMessage</p>
+
+@if (PortfolioForecasts == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Your Age</th>
+                <th>Present Value</th>
+                <th>Future Value</th>                
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var forecast in PortfolioForecasts)
+            {
+                <tr>
+                    <td>@forecast.Age</td>
+                    <td>@forecast.PresentValue.ToString("C0")</td>
+                    <td>@forecast.FutureValue.ToString("C0")</td>                    
+                </tr>
+            }
+        </tbody>
+    </table>
+}

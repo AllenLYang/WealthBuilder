@@ -1,0 +1,36 @@
+﻿@page "/retirement-phase1"
+
+<PageTitle>Retirement Phase 1</PageTitle>
+
+<h3>The Fun Years of Retirement</h3>
+
+<p>In this phase of your retirement, your living expenses should be covered by your taxable account.</p>
+<p>Adjusted for inflation, your annual distribution of @InvestorProfile.AnnualWithdrawalAmountPV.ToString("C0") will be @InvestorProfile.AnnualWithdrawalAmountFVPhase1Retirement.ToString("C0") in @InvestorProfile.Phase1RetirementStartYear.</p>
+<p>In addition, a 3% annual inflation is added to your future withdrawals.</p>
+
+@if (PortfolioForecasts == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Your Age</th>
+                <th>Annual Distribution (in Future Value)</th>                
+                <th>Account Balance (in Future Value)</th>                
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var forecast in PortfolioForecasts)
+            {
+                <tr>
+                    <td>@forecast.Age</td>
+                    <td>@forecast.AnnualWithdrawalAmountFV.ToString("C0")</td>                    
+                    <td>@forecast.FutureValue.ToString("C0")</td>                    
+                </tr>
+            }
+        </tbody>
+    </table>
+}

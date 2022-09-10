@@ -1,0 +1,35 @@
+﻿@page "/retirement-phase2"
+
+<PageTitle>Retirement Phase 2</PageTitle>
+
+<h3>Phase 2 of Retirement Years</h3>
+
+<p>In this phase of your retirement, your living expenses should be covered by your retirement accounts.</p>
+<p>Fun Fact - You are required to take your first RMD (<a href="https://www.irs.gov/retirement-plans/retirement-plans-faqs-regarding-required-minimum-distributions">Required Minimum Distributions</a>) from your 401(K) or IRA when you turn 72.</p>
+<p>If you want to keep the same annual distribution of @InvestorProfile.AnnualWithdrawalAmountPV.ToString("C0"), adjusted for inflation, the future amount will be @InvestorProfile.AnnualWithdrawalAmountFVPhase2Retirement.ToString("C0") in @InvestorProfile.Phase2RetirementStartYear.</p>
+@if (PortfolioForecasts == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Your Age</th>
+                <th>Annual Distribution (in Future Value)</th>                
+                <th>Account Balance (in Future Value)</th>                
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var forecast in PortfolioForecasts)
+            {
+                <tr>
+                    <td>@forecast.Age</td>
+                    <td>@forecast.AnnualWithdrawalAmountFV.ToString("C0")</td>                    
+                    <td>@forecast.FutureValue.ToString("C0")</td>                    
+                </tr>
+            }
+        </tbody>
+    </table>
+}

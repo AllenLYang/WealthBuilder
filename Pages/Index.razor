@@ -1,0 +1,90 @@
+﻿@page "/"
+
+<PageTitle>Index</PageTitle>
+
+<H3>Your Profile</H3>
+
+<div class="row">
+    <div class="col-md-8">
+        <div class="form-group">
+            <label for="Age" class="control-label">1. Your age</label>
+            <input for="Age" class="form-control" type="number" @bind="InvestorProfile.WorkStartAge" />
+        </div>
+
+        <div class="form-group">
+            <label for="NumberOfWorkingYears" class="control-label">2. How many years do you plan to work?</label>
+            <input for="NumberOfWorkingYears" class="form-control" type="number" @bind="InvestorProfile.NumberOfWorkingYears" />
+        </div>
+
+        <div class="form-group">
+            <label for="LifeStyle" class="control-label">3. What lifestyle would you like to live in your retirement?</label>
+            @*<select for="LifeStyle" class="form-control" @onchange="@OnLifestyleChange" @bind="ForecastService.InvestorProfile.RetirementLifeStyle.Id">*@
+            <select for="LifeStyle" class="form-control" @onchange="@OnLifestyleChange" value="@ForecastService.InvestorProfile.RetirementLifeStyle.Id">
+                @foreach (var lifeStyle in RetirementLifeStyleList)
+                {
+                    <option value="@lifeStyle.Id">
+                        @lifeStyle.Name
+                    </option>
+                }
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="RetirementSavings" class="control-label">4. During your working years, how much do you plan to save annually in your retirement accounts (i.e., 401(K), IRA, etc.)?</label>            
+            <input for="RetirementSavings" class="form-control" type="number" @bind="InvestorProfile.AnnualRetirementSavingAmountPV" />
+        </div>
+
+        <div class="form-group">
+            <label for="TaxableSavings" class="control-label">5. During your working years, how much do you plan to save annually in your taxable non-retirement account?</label>
+            <input for="TaxableSavings" class="form-control" type="number" @bind="InvestorProfile.AnnualTaxableSavingAmountPV" />
+        </div>
+
+        <div class="form-group">
+            <label for="AnnuaDistribution" class="control-label">6. In your retirement years, how much do you plan to withdraw annually(in today's value)?</label>
+            <input for="AnnuaDistribution" class="form-control" type="number" @bind="InvestorProfile.AnnualWithdrawalAmountPV" />
+        </div>
+
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-auto smallpadding multiline">
+        <button class="btn btn-primary" @onclick="ConfirmAmount">Confirm</button>
+    </div>
+</div>
+
+
+@if (@DisplayConfirmationMessage)
+{
+    <div class="row">
+        <div class="col-auto smallpadding multiline">
+            @ConfirmationMessage
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-auto smallpadding multiline">
+        </div>
+    </div>
+       
+    <div class="row">
+        <div class="col-auto smallpadding multiline">
+            By the way, if you are married with two incomes, you can try doubling your savings.
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-auto smallpadding multiline">
+            Next click on each menu item on the left to see how your investment grows over a very long period of time.            
+        </div>
+    </div>
+}
+
+<Confirmation @ref="WarningDialog" onCancel="OnCancel" onConfirm="OnConfirm">
+    <div>Please enter a valid value for the following fields.</div>
+
+    @foreach (var fieldName in InputErrorFieldNames)
+    {
+        <li>@fieldName</li>
+    }
+</Confirmation>

@@ -1,0 +1,41 @@
+﻿@page "/yourestate"
+
+<PageTitle>Your Estate</PageTitle>
+
+<h3>Your Estate</h3>
+
+Your taxable account continues to grow when you started your phase 2 retirement. 
+<p></p>
+
+<p>@LeadingMessage</p>
+<p></p>
+
+<p>@FutureAndPresentValueMessage</p>
+
+@if (PortfolioForecasts == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    if (DisplayTaxableAccountGrowthInPhase2Retirement)
+    {
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Your Age</th>                
+                    <th>Future Value</th>                
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var forecast in PortfolioForecasts)
+                {
+                    <tr>
+                        <td>@forecast.Age</td>                    
+                        <td>@forecast.FutureValue.ToString("C0")</td>                    
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+}
