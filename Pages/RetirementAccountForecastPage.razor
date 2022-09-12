@@ -25,8 +25,8 @@ else
             {
                 <tr>
                     <td>@forecast.Age</td>
-                    <td>@forecast.PresentValue.ToString("C0")</td>
-                    <td>@forecast.FutureValue.ToString("C0")</td>                    
+                    <td>@forecast.PresentValue.ToUSDollar()</td>
+                    <td>@forecast.FutureValue.ToUSDollar()</td>
                 </tr>
             }
         </tbody>

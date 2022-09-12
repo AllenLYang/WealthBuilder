@@ -28,10 +28,10 @@ namespace WealthBuilder.Pages
                 ForecastService.GetRetirementAccountBalanceWithDistributionsForPhase2Retirement(InvestorProfile.AnnualWithdrawalAmountPV);
             }
 
-            LeadingMessage = $"At age {InvestorProfile.LifeSpanMaxAge}, the future value of your taxable account is {ForecastService.TaxableAccountValueEndingPhase2Retirement.FutureValue.ToString("C0")}. " +
-                $"In addition, the future value of your retirement account is {ForecastService.RetirementAccountValueEndingPhase2Retirement.FutureValue.ToString("C0")}.";                
+            LeadingMessage = $"At age {InvestorProfile.LifeSpanMaxAge}, the future value of your taxable account is {ForecastService.TaxableAccountValueEndingPhase2Retirement.FutureValue.ToUSDollar()}. " +
+                $"In addition, the future value of your retirement account is {ForecastService.RetirementAccountValueEndingPhase2Retirement.FutureValue.ToUSDollar()}.";                
 
-            FutureAndPresentValueMessage = $"Your estate is the sum of both accounts, which stands at {ForecastService.CombinedAccountValueEndingPhase2Retirement.FutureValue.ToString("C0")} in future value, or about {ForecastService.CombinedAccountValueEndingPhase2Retirement.PresentValue.ToString("C0")} in present value.";
+            FutureAndPresentValueMessage = $"Your estate is the sum of both accounts, which stands at {ForecastService.CombinedAccountValueEndingPhase2Retirement.FutureValue.ToUSDollar()} in future value, or about {ForecastService.CombinedAccountValueEndingPhase2Retirement.PresentValue.ToUSDollar()} in present value.";
 
             if (ForecastService.TaxableAccountValueEndingPhase2Retirement.FutureValue <= 0)
             {

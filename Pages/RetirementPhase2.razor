@@ -6,7 +6,7 @@
 
 <p>In this phase of your retirement, your living expenses should be covered by your retirement accounts.</p>
 <p>Fun Fact - You are required to take your first RMD (<a href="https://www.irs.gov/retirement-plans/retirement-plans-faqs-regarding-required-minimum-distributions">Required Minimum Distributions</a>) from your 401(K) or IRA when you turn 72.</p>
-<p>If you want to keep the same annual distribution of @InvestorProfile.AnnualWithdrawalAmountPV.ToString("C0"), adjusted for inflation, the future amount will be @InvestorProfile.AnnualWithdrawalAmountFVPhase2Retirement.ToString("C0") in @InvestorProfile.Phase2RetirementStartYear.</p>
+<p>If you want to keep the same annual distribution of @InvestorProfile.AnnualWithdrawalAmountPV.ToUSDollar(), adjusted for inflation, the future amount will be @InvestorProfile.AnnualWithdrawalAmountFVPhase2Retirement.ToUSDollar() in @InvestorProfile.Phase2RetirementStartYear.</p>
 @if (PortfolioForecasts == null)
 {
     <p><em>Loading...</em></p>
@@ -26,8 +26,8 @@ else
             {
                 <tr>
                     <td>@forecast.Age</td>
-                    <td>@forecast.AnnualWithdrawalAmountFV.ToString("C0")</td>                    
-                    <td>@forecast.FutureValue.ToString("C0")</td>                    
+                    <td>@forecast.AnnualWithdrawalAmountFV.ToUSDollar()</td>
+                    <td>@forecast.FutureValue.ToUSDollar()</td>
                 </tr>
             }
         </tbody>

@@ -31,8 +31,8 @@ else
                 @foreach (var forecast in PortfolioForecasts)
                 {
                     <tr>
-                        <td>@forecast.Age</td>                    
-                        <td>@forecast.FutureValue.ToString("C0")</td>                    
+                        <td>@forecast.Age</td>
+                        <td>@forecast.FutureValue.ToUSDollar()</td>
                     </tr>
                 }
             </tbody>

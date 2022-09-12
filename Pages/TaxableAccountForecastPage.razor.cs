@@ -19,7 +19,7 @@ namespace WealthBuilder.Pages
 
         protected override async Task OnInitializedAsync()
         {
-            LeadingMessage = $"Here is how your annual savings of {InvestorProfile.AnnualTaxableSavingAmountPV.ToString("C0")} would grow with a low cost index fund that tracks the S&P 500 index in the next {InvestorProfile.NumberOfWorkingYears} years.";
+            LeadingMessage = $"Here is how your annual savings of {InvestorProfile.AnnualTaxableSavingAmountPV.ToUSDollar()} would grow with a low cost index fund that tracks the S&P 500 index in the next {InvestorProfile.NumberOfWorkingYears} years.";
             PortfolioForecasts = ForecastService.RunWealthForecastOnTaxableAccount();
         }                
     }

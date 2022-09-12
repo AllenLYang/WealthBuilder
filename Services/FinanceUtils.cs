@@ -1,10 +1,25 @@
-﻿using WealthBuilder.Models;
+﻿using System.Globalization;
+using WealthBuilder.Models;
 
 namespace WealthBuilder.Services
 {
     public static class FinanceUtils
     {
         private const decimal AnnualInflationRate = 0.03M;      //assuming a 3% annual inflation rate
+
+        public static string ToUSDollar(this int amount)
+        {
+            var context = new CultureInfo("en-US");
+
+            return amount.ToString("C0", context);
+        }
+
+        public static string ToUSDollar(this decimal amount)
+        {
+            var context = new CultureInfo("en-US");
+
+            return amount.ToString("C0", context);
+        }
 
         public static int ToFutureInflatedAmount(this int originalAmount, int numberOfYears)
         {

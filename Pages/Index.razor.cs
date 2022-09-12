@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Components;
+using System.Globalization;
 using WealthBuilder.Models;
 using WealthBuilder.Services;
 
@@ -143,11 +144,11 @@ namespace WealthBuilder.Pages
             //But just so you know. Only a red-neck would save only x a year and think that's a upper-middle class lifestyle. 
             if (InvestorProfile.AnnualTaxableSavingAmountPV >= AnnualSavingAmountGoodThreshold)
             {
-                ConfirmationMessage = $"Great! Saving {InvestorProfile.AnnualTaxableSavingAmountPV.ToString("C0")} a year will put you in an excellent place when you retire.";
+                ConfirmationMessage = $"Great! Saving {InvestorProfile.AnnualTaxableSavingAmountPV.ToUSDollar()} a year will put you in an excellent place when you retire.";
             }
             else
             {
-                ConfirmationMessage = $"Great! You have chosen to save {InvestorProfile.AnnualTaxableSavingAmountPV.ToString("C0")} a year. When you make more later, remember to increase your saving as well.";
+                ConfirmationMessage = $"Great! You have chosen to save {InvestorProfile.AnnualTaxableSavingAmountPV.ToUSDollar()} a year. When you make more later, remember to increase your saving as well.";
             }
 
             DisplayConfirmationMessage = true;
