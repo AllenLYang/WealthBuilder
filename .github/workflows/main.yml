@@ -26,11 +26,11 @@ jobs:
 
       # Sets up .NET Core SDK 6.x
       - name: Setup .NET 6.0
-        uses: actions/setup-dotnet@v1
+        uses: actions/setup-dotnet@v2.1.0
         with:
-          dotnet-version: 5.0.101
+          dotnet-version: 6.x
 	
-	  # Publishes the Blazor project to the release
+      # Publishes the Blazor project to the release
       - name: Publish .NET Core Project
         run: dotnet publish WealthBuilder.csproj -c Release -o release –nologo
       
