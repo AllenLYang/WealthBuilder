@@ -29,16 +29,15 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./build/wwwroot  # Adjust the path according to your publish directory
-
+      
       - name: Increment version in .csproj
         run: |
           path='/home/runner/work/WealthBuilder/WealthBuilder/WealthBuilder.csproj'  # Path to the .csproj file
           content=$(cat "$path")  # Read the file contents into a variable
           version=$(echo "$content" | sed -n 's/.*<Version>\(.*\)<\/Version>.*/\1/p')  # Extract current version using sed
-          set -- $version  # Set positional parameters
-          major=$1
-          minor=$2
-          patch=$3
+          major=$(echo $version | cut -d '.' -f 1)  # Extract major number
+          minor=$(echo $version | cut -d '.' -f 2)  # Extract minor number
+          patch=$(echo $version | cut -d '.' -f 3)  # Extract patch number
           patch=$(expr $patch + 1)  # Increment patch number using expr
           new_version="$major.$minor.$patch"  # Construct new version
           content=$(echo "$content" | sed "s/<Version>$version<\/Version>/<Version>$new_version<\/Version>/")  # Replace old version with new
