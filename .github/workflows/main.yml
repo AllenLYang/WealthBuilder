@@ -32,7 +32,7 @@ jobs:
 
       - name: Increment version in .csproj
         run: |
-          path='src/WealthBuilder.csproj'  # Path to the .csproj file
+          path='src/WealthBuilder/WealthBuilder.csproj'  # Path to the .csproj file
           content=$(cat "$path")  # Read the file contents into a variable
           version=$(echo "$content" | sed -n 's/.*<Version>\(.*\)<\/Version>.*/\1/p')  # Extract current version using sed
           set -- $version  # Set positional parameters
@@ -48,7 +48,7 @@ jobs:
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git add src/WealthBuilder.csproj
+          git add src/WealthBuilder/WealthBuilder.csproj
           git commit -m "Increment patch version"
           git push
         env:
