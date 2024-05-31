@@ -7,6 +7,8 @@ namespace WealthBuilder.Services
     {
         private const decimal AnnualInflationRate = 0.03M;      //assuming a 3% annual inflation rate
 
+    //Test deployment script with this change
+        
         public static string ToUSDollar(this int amount)
         {
             var context = new CultureInfo("en-US");
