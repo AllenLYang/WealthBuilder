@@ -39,9 +39,11 @@ jobs:
           minor=$(echo $version | cut -d '.' -f 2)  # Extract minor number
           patch=$(echo $version | cut -d '.' -f 3)  # Extract patch number
           patch=$(expr $patch + 1)  # Increment patch number using expr
-          new_version="$major.$minor.$patch"  # Construct new version
+          new_version="$major.$minor.$patch"  # Construct new version          
           content=$(echo "$content" | sed "s/<Version>$version<\/Version>/<Version>$new_version<\/Version>/")  # Replace old version with new
           echo "$content" > "$path"  # Write new content back to the .csproj file
+          echo "New version: $new_version"
+          echo "Content: $content"
 
       - name: Commit and Push Version Update
         run: |
