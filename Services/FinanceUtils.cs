@@ -6,6 +6,8 @@ namespace WealthBuilder.Services;
 public static class FinanceUtils
 {
     private const decimal AnnualInflationRate = 0.03M;      //assuming a 3% annual inflation rate
+
+    //Test - create a PR to abandon
                 
     public static string ToUSDollar(this int amount)
     {
