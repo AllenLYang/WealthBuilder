@@ -1,9 +1,13 @@
 name: Deploy Blazor App to GitHub Pages
 
 on:
-  push:
+  # push:
+  #  branches:
+  #    - main  # Set this to your default branch
+  pull_request:
+    types: [closed]
     branches:
-      - main  # Set this to your default branch
+      - main
 
 jobs:
   build-and-deploy:
@@ -31,7 +35,8 @@ jobs:
           publish_dir: ./build/wwwroot  # Adjust the path according to your publish directory
       
       - name: Increment version in .csproj
-        if:  ${{ github.event_name == 'pull_request'}}
+        # if:  ${{ github.event_name == 'pull_request'}}
+        if: (github.event.pull_request.merged == true)
         run: |
           path='/home/runner/work/WealthBuilder/WealthBuilder/WealthBuilder.csproj'  # Path to the .csproj file
           content=$(cat "$path")  # Read the file contents into a variable
@@ -49,7 +54,8 @@ jobs:
           echo "github.event_name: ${{ github.event_name }}" 
 
       - name: Commit and Push Version Update
-        if:  ${{ github.event_name == 'pull_request'}}
+        # if:  ${{ github.event_name == 'pull_request'}}
+        if: (github.event.pull_request.merged == true)
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
