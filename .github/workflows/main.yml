@@ -49,9 +49,10 @@ jobs:
           content=$(echo "$content" | sed "s/<Version>$version<\/Version>/<Version>$new_version<\/Version>/")  # Replace old version with new
           echo "$content" > "$path"  # Write new content back to the .csproj file
           echo "New version: $new_version"
-          echo "Content: $content"
-          echo "The event name is $EVENT_NAME"
+          echo "Content: $content"          
           echo "github.event_name: ${{ github.event_name }}" 
+          echo "Pull Request Merged: ${{ github.event.pull_request.merged }}"
+          echo "Pull Request Closed without merging: ${{ !github.event.pull_request.merged }}"
 
       - name: Commit and Push Version Update
         # if:  ${{ github.event_name == 'pull_request'}}
