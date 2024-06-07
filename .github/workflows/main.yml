@@ -5,7 +5,7 @@ on:
   #  branches:
   #    - main  # Set this to your default branch
   pull_request:
-    types: [closed]
+    types: [opened, synchronize, reopened, closed]
     branches:
       - main
 
@@ -43,8 +43,9 @@ jobs:
           version=$(echo "$content" | sed -n 's/.*<Version>\(.*\)<\/Version>.*/\1/p')  # Extract current version using sed
           major=$(echo $version | cut -d '.' -f 1)  # Extract major number
           minor=$(echo $version | cut -d '.' -f 2)  # Extract minor number
-          patch=$(echo $version | cut -d '.' -f 3)  # Extract patch number
-          patch=$(expr $patch + 1)  # Increment patch number using expr
+          # patch=$(echo $version | cut -d '.' -f 3)  # Extract patch number
+          # patch=$(expr $patch + 1)  # Increment patch number using expr
+          patch=${{ github.run_number }}
           new_version="$major.$minor.$patch"  # Construct new version          
           content=$(echo "$content" | sed "s/<Version>$version<\/Version>/<Version>$new_version<\/Version>/")  # Replace old version with new
           echo "$content" > "$path"  # Write new content back to the .csproj file
@@ -54,15 +55,15 @@ jobs:
           echo "Pull Request Merged: ${{ github.event.pull_request.merged }}"
           echo "Pull Request Closed without merging: ${{ !github.event.pull_request.merged }}"
 
-      - name: Commit and Push Version Update
-        # if:  ${{ github.event_name == 'pull_request'}}
-        if: (github.event.pull_request.merged == true)
-        run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git add /home/runner/work/WealthBuilder/WealthBuilder/WealthBuilder.csproj
-          git commit -m "Increment patch version"
-          git push
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+     # Uncomment this step to push change back to repo 
+     # - name: Commit and Push Version Update      
+     #   if: (github.event.pull_request.merged == true)
+     #   run: |
+     #     git config --global user.name "github-actions[bot]"
+     #     git config --global user.email "github-actions[bot]@users.noreply.github.com"
+     #     git add /home/runner/work/WealthBuilder/WealthBuilder/WealthBuilder.csproj
+     #     git commit -m "Increment patch version"
+     #     git push
+     #   env:
+     #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           
