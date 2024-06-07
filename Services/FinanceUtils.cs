@@ -75,7 +75,7 @@ public static class FinanceUtils
             AnnualTaxableSavingAmount = 30000,
             AnnualRetirementWithdrawalAmount = 200000,
             Name = "Upper Middle Class - Silver Medallion",
-            Message = "Typically maxes out the 401(K) and ROTH IRA limits. Primary residence is in one of the nicest neighborhoods. Net worth ranges from $1.2 to $10 million. The low end of the 9.9-percenters."
+            Message = "Typically maxes out the 401(K) and ROTH IRA contributions. Primary residence is in one of the nicest neighborhoods. Net worth ranges from $1.2 to $10 million. The low end of the 9.9-percenters."
         };
         retirementLifeStyleList.Add(lifeStyle);
 
@@ -86,7 +86,7 @@ public static class FinanceUtils
             AnnualTaxableSavingAmount = 60000,
             AnnualRetirementWithdrawalAmount = 250000,
             Name = "Upper Middle Class - Gold Medallion",
-            Message = "Typically maxes out the 401(K) and ROTH IRA limits. Primary residence is in one of the nicest neighborhoods. Net worth ranges from $10 to $20 million. The high end of the 9.9-percenters."
+            Message = "Typically maxes out the 401(K) contributions. Very likely to also have a mega ROTH IRA. Primary residence is in one of the nicest neighborhoods. Net worth ranges from $10 to $20 million. The high end of the 9.9-percenters."
         };
         retirementLifeStyleList.Add(lifeStyle);
 
@@ -97,7 +97,7 @@ public static class FinanceUtils
             AnnualTaxableSavingAmount = 80000,
             AnnualRetirementWithdrawalAmount = 350000,
             Name = "Upper Middle Class - Platinum Medallion",
-            Message = "Typically maxes out the 401(K) and ROTH IRA limits. Primary residence is in one of the nicest neighborhoods. Net worth exceeds $20 million. The top 0.1-percenters"
+            Message = "Typically maxes out the 401(K) contribution. Most likely to have a Mega ROTH IRA. Primary residence is in one of the nicest neighborhoods. Net worth exceeds $20 million. The top 0.1-percenters."
         };
         retirementLifeStyleList.Add(lifeStyle);
 
